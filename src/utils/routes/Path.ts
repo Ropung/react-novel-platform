@@ -4,6 +4,7 @@ const Path = {
   SIGNUP: "/signup",
   LOGIN: "/login",
   WORKLIST: "/worklist",
+  CARTOON: "/cartoon",
 };
 
 Object.freeze(Path);
