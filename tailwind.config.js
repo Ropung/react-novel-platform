@@ -27,9 +27,9 @@ module.exports = {
         "primary-active": "#0c56d0",
         "primary-contra": "#FFFFFF",
         // SECONDARY
-        secondary: "#B23CFD",
-        "secondary-active": "#a316fd",
-        "secondary-contra": "#FFFFFF",
+        footer: "#e9e9e9",
+        "footer-active": "#bdbebd",
+        "footer-contra": "#a9a9a9",
         // SUCCESS
         success: "#00B74A",
         "success-active": "#00913b",
