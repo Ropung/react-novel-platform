@@ -28,7 +28,7 @@ function App() {
         <Route path={NOVEL} element={<HomePage />} />
         <Route path={LOGIN} element={<HomePage />} />
         <Route path={SIGNUP} element={<HomePage />} />
-        <Route path="*" element={<Navigate replace to="/404" />} />
+        <Route path="*" element={<Navigate replace to={HOME} />} />
       </Routes>
     </div>
   );
