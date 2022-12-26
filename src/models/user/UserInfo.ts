@@ -6,3 +6,10 @@ export default interface UserInfo {
   birth: string;
   fullname: string;
 }
+export type UserInfoInput =
+  | "uid"
+  | "username"
+  | "email"
+  | "authorName"
+  | "birth"
+  | "fullname";
