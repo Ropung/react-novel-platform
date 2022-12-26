@@ -1,8 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Footer from "./components/common/Footer";
 import GNB from "./components/common/GNB";
-import HomePage from "./components/home/HomePage";
 import { db } from "@utils/firebase";
 import "firebase/firestore";
 import Path from "./utils/routes/Path";
@@ -37,20 +36,22 @@ function App() {
       pathname
     );
     setHasNav(hasNav);
-    const hasFooter = [HOME, NOVEL, LOGIN, SIGNUP, CARTOON, WORKLIST].includes(
-      pathname
-    );
+    const hasFooter = [HOME, NOVEL, CARTOON, WORKLIST].includes(pathname);
     setHasFooter(hasFooter);
   }, [location.pathname]);
 
   useLayoutEffect(() => {
-    // signUp("abc123@naver.com", "1234")
-    //   .then((result) => console.log(result))
-    //   .catch(console.error);
+    signUp("abc123@naver.com", "1234")
+      .then((result) => console.log(result))
+      .catch(console.error);
   }, []);
 
   return (
-    <div className="pt-28 pb-64 relative min-h-[100vh]">
+    <div
+      className={` relative min-h-[100vh] ${hasNav ? `pt-28` : ``} ${
+        hasFooter ? `pb-64` : ``
+      }`}
+    >
       <header>{hasNav && <GNB />}</header>
       <div className="w-full min-h-[100%] px-16 py-8">{RoutesComponent}</div>
       <footer>{hasFooter && <Footer />}</footer>

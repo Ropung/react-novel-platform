@@ -1,6 +1,7 @@
 import HomePage from "@components/home/HomePage";
+import LoginPage from "@components/users/login/LoginPage";
+import SignupPage from "@components/users/signup/SignupPage";
 import Path from "@utils/routes/Path";
-import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 const UnauthenticatedRoutes = () => {
@@ -12,8 +13,8 @@ const UnauthenticatedRoutes = () => {
       <Route path={NOVEL} element={<HomePage />} />
       <Route path={CARTOON} element={<HomePage />} />
       <Route path={WORKLIST} element={<HomePage />} />
-      <Route path={LOGIN} element={<HomePage />} />
-      <Route path={SIGNUP} element={<HomePage />} />
+      <Route path={LOGIN} element={<LoginPage />} />
+      <Route path={SIGNUP} element={<SignupPage />} />
       <Route path="*" element={<Navigate replace to={HOME} />} />
     </Routes>
   );
