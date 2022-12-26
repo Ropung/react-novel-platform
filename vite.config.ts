@@ -7,7 +7,6 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
       "@assets": path.resolve(__dirname, "./src/assets"),
       "@components": path.resolve(__dirname, "./src/components"),
       "@data": path.resolve(__dirname, "./src/data"),
@@ -15,10 +14,7 @@ export default defineConfig({
       "@store": path.resolve(__dirname, "./src/store"),
       "@styles": path.resolve(__dirname, "./src/styles"),
       "@utils": path.resolve(__dirname, "./src/utils"),
+      "@": path.resolve(__dirname, "./src"),
     },
-  },
-  root: ".",
-  build: {
-    outDir: "../dist/home",
   },
 });
