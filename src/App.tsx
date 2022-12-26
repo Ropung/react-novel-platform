@@ -1,9 +1,14 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Footer from "./components/common/Footer";
 import GNB from "./components/common/GNB";
 import HomePage from "./components/home/HomePage";
+import { db } from "@utils/firebase";
+import "firebase/firestore";
 import Path from "./utils/routes/Path";
+import { signUp } from "@utils/firebase/user";
+import UnauthenticatedRoutes from "@components/routes/UnauthenticatedRoutes";
+import ProtectedRoutes from "@components/routes/ProtectedRoutes";
 
 function App() {
   const location = useLocation();
@@ -11,6 +16,17 @@ function App() {
 
   const [hasNav, setHasNav] = useState<boolean>(false);
   const [hasFooter, setHasFooter] = useState<boolean>(false);
+  const [RoutesComponent, setRoutesComponent] =
+    useState<React.ReactElement | null>(null);
+
+  // FIXME 임시 Auth
+  const [isAuthenticated, setAuthenticated] = useState<boolean>(false);
+
+  useEffect(() => {
+    isAuthenticated && setRoutesComponent(<ProtectedRoutes />);
+    !isAuthenticated && setRoutesComponent(<UnauthenticatedRoutes />);
+  }, [isAuthenticated]);
+
   useLayoutEffect(() => {
     const pathname =
       location.pathname.endsWith("/") && location.pathname.length > 1
@@ -27,21 +43,17 @@ function App() {
     setHasFooter(hasFooter);
   }, [location.pathname]);
 
+  useLayoutEffect(() => {
+    // signUp("abc123@naver.com", "1234")
+    //   .then((result) => console.log(result))
+    //   .catch(console.error);
+  }, []);
+
   return (
     <div className="pt-28 pb-64 relative min-h-[100vh]">
-      {hasNav && <GNB />}
-      <div className="w-full min-h-[100%] px-16 py-8">
-        <Routes>
-          <Route path={HOME} element={<HomePage />} />
-          <Route path={NOVEL} element={<HomePage />} />
-          <Route path={CARTOON} element={<HomePage />} />
-          <Route path={WORKLIST} element={<HomePage />} />
-          <Route path={LOGIN} element={<HomePage />} />
-          <Route path={SIGNUP} element={<HomePage />} />
-          <Route path="*" element={<Navigate replace to={HOME} />} />
-        </Routes>
-      </div>
-      {hasFooter && <Footer />}
+      <header>{hasNav && <GNB />}</header>
+      <div className="w-full min-h-[100%] px-16 py-8">{RoutesComponent}</div>
+      <footer>{hasFooter && <Footer />}</footer>
     </div>
   );
 }

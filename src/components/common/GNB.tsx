@@ -2,17 +2,54 @@ import Path from "@/utils/routes/Path";
 import { Link } from "react-router-dom";
 
 const GNB = () => {
-  const { HOME, NOVEL, LOGIN, SIGNUP, WORKLIST } = Path;
+  const { HOME, NOVEL, LOGIN, SIGNUP, WORKLIST, CARTOON } = Path;
+
+  const TopNavMenuList = [
+    {
+      content: "회원가입",
+      linkTo: SIGNUP,
+      replace: false,
+    },
+    {
+      content: "로그인",
+      linkTo: LOGIN,
+      replace: false,
+    },
+  ];
+
+  const navMenuList = [
+    {
+      content: "홈",
+      linkTo: HOME,
+      replace: false,
+    },
+    {
+      content: "웹소설",
+      linkTo: NOVEL,
+      replace: false,
+    },
+    {
+      content: "웹툰",
+      linkTo: CARTOON,
+      replace: false,
+    },
+    {
+      content: "작품목록",
+      linkTo: WORKLIST,
+      replace: false,
+    },
+  ];
+
   return (
     <nav className="fixed top-0 right-0 left-0 z-[100] w-screen flex flex-row h-28 bg-light text-dark select-none px-8 pt-2 pb-8 border-b shadow-md">
       <div className="w-full flex flex-col">
+        {/* 탑 네비 메뉴 */}
         <ul className="flex flex-row gap-2 justify-end font-bold">
-          <li className="cursor-pointer">
-            <Link to={SIGNUP}>회원가입</Link>
-          </li>
-          <li className="cursor-pointer">
-            <Link to={LOGIN}>로그인</Link>
-          </li>
+          {TopNavMenuList.map((menu) => (
+            <Link to={menu.linkTo} key={menu.content} replace={menu.replace}>
+              <li className="cursor-pointer">{menu.content}</li>
+            </Link>
+          ))}
         </ul>
         <div className="flex justify-between items-end">
           <Link
@@ -21,19 +58,13 @@ const GNB = () => {
           >
             Ropung
           </Link>
+          {/* 미들 네비 메뉴 */}
           <ul className="flex flex-row items-end justify-center text-2xl whitespace-nowrap gap-10">
-            <li className="cursor-pointer">
-              <Link to={HOME}>홈</Link>
-            </li>
-            <li className="cursor-pointer">
-              <Link to={NOVEL}>웹소설</Link>
-            </li>
-            <li className="cursor-pointer">
-              <Link to={NOVEL}>웹툰</Link>
-            </li>
-            <li className="cursor-pointer">
-              <Link to={WORKLIST}>작품목록</Link>
-            </li>
+            {navMenuList.map((menu) => (
+              <Link to={menu.linkTo} key={menu.content} replace={menu.replace}>
+                <li className="cursor-pointer">{menu.content}</li>
+              </Link>
+            ))}
           </ul>
         </div>
       </div>
