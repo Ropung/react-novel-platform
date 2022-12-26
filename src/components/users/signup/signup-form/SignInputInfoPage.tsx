@@ -10,7 +10,10 @@ const SignInputInfoPage = () => {
   const bYearRef = useRef<HTMLSelectElement | null>(null);
   const bMonthRef = useRef<HTMLSelectElement | null>(null);
   const bDateRef = useRef<HTMLSelectElement | null>(null);
+
+  const authorNameRef = useRef<HTMLInputElement | null>(null);
   const fullnameRef = useRef<HTMLInputElement | null>(null);
+
   const [canSeePW, setCanSeePW] = useState<boolean>(false);
   const [canSeeFirmPW, setCanSeeFirmPW] = useState<boolean>(false);
 
@@ -145,7 +148,25 @@ const SignInputInfoPage = () => {
           </span>
         </label>
       </fieldset>
-
+      <fieldset className="flex flex-col gap-2">
+        <p
+          className={`font-bold after:content-['*'] after:ml-0.5 after:text-red-500`}
+        >
+          필명(닉네임)
+        </p>
+        <input
+          className={`border w-full leading-8 rounded-sm`}
+          type="text"
+          name="authorName"
+          ref={authorNameRef}
+          maxLength={13}
+          minLength={4}
+          onChange={(evt) => {
+            //
+          }}
+          required
+        />
+      </fieldset>
       <fieldset className="flex flex-col gap-2">
         <p
           className={`font-bold after:content-['*'] after:ml-0.5 after:text-red-500`}
@@ -155,7 +176,7 @@ const SignInputInfoPage = () => {
         <input
           className={`border w-full leading-8 rounded-sm`}
           type="text"
-          name="first_name"
+          name="fullname"
           ref={fullnameRef}
           onChange={(evt) => {
             evt.target.value = evt.target.value.replace(/[^ㄱ-ㅎ가-힣]/g, "");
