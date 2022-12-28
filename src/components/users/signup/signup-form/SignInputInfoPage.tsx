@@ -15,6 +15,8 @@ const SignInputInfoPage = () => {
 
   const [canSeePW, setCanSeePW] = useState<boolean>(false);
   const [canSeeFirmPW, setCanSeeFirmPW] = useState<boolean>(false);
+  // 가입신청
+  const [validPassed, setValidPassed] = useState<boolean>(false);
 
   const now = new Date();
   const today = new Date(
@@ -241,7 +243,15 @@ const SignInputInfoPage = () => {
           </div>
         </fieldset>
       </section>
-      <MainButton className="w-full !py-2 font-bold text-3xl">
+      <MainButton
+        className={`w-full !py-4 !rounded-lg font-bold text-3xl ${
+          !validPassed ? "bg-default" : ""
+        }`}
+        disabled={!validPassed}
+        onClick={() => {
+          console.log("asdf");
+        }}
+      >
         가입신청
       </MainButton>
     </section>

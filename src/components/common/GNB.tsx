@@ -41,8 +41,8 @@ const GNB = () => {
   ];
 
   return (
-    <nav className="fixed top-0 right-0 left-0 z-[100] w-screen flex flex-row h-28 bg-light text-dark select-none px-8 pt-2 pb-8 border-b shadow-md">
-      <div className="w-full flex flex-col">
+    <nav className="w-screen fixed top-0 right-0 left-0 z-[100] flex flex-row h-36 bg-light text-dark select-none px-8 border-b shadow-md">
+      <div className="w-full flex flex-col gap-6 px-8 py-4">
         {/* 탑 네비 메뉴 */}
         <ul className="flex flex-row gap-2 justify-end font-bold">
           {TopNavMenuList.map((menu) => (

@@ -3,4 +3,5 @@ export default interface novelsProps {
   alt: string;
   novelid: string;
   kategorie: string;
+  tag: string;
 }

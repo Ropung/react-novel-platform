@@ -27,36 +27,41 @@ const HomePage = () => {
       alt: "이미지01",
       novelid: "novel-1",
       kategorie: "",
+      tag: "",
     },
     {
       url: "http://image.yes24.com/goods/106211628/XL",
       alt: "이미지02",
       novelid: "novel-2",
       kategorie: "",
+      tag: "",
     },
     {
       url: "http://image.yes24.com/goods/106211628/XL",
       alt: "이미지03",
       novelid: "novel-3",
       kategorie: "",
+      tag: "",
     },
     {
       url: "http://image.yes24.com/goods/106211628/XL",
       alt: "이미지03",
       novelid: "novel-4",
       kategorie: "",
+      tag: "",
     },
     {
       url: "http://image.yes24.com/goods/106211628/XL",
       alt: "이미지03",
       novelid: "novel-5",
       kategorie: "",
+      tag: "",
     },
   ];
 
   return (
-    <main>
-      <div className="flex flex-col gap-16">
+    <main className="w-full flex items-center justify-center pt-20">
+      <div className="w-[80vw] flex flex-col gap-16">
         {/* 상단 슬라이드배너 */}
         <div className="flex flex-row gap-2 py-4">
           {bannerList.map((item) => (

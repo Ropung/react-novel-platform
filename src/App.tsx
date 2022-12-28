@@ -32,11 +32,13 @@ function App() {
         ? location.pathname.slice(0, -1)
         : location.pathname;
 
+    // Nav 띄우는 PATH
     const hasNav = [HOME, NOVEL, LOGIN, SIGNUP, CARTOON, WORKLIST].includes(
       pathname
     );
-    setHasNav(hasNav);
+    // Footer 띄우는 PATH
     const hasFooter = [HOME, NOVEL, CARTOON, WORKLIST].includes(pathname);
+    setHasNav(hasNav);
     setHasFooter(hasFooter);
   }, [location.pathname]);
 
@@ -48,12 +50,12 @@ function App() {
 
   return (
     <div
-      className={` relative min-h-[100vh] ${hasNav ? `pt-28` : ``} ${
+      className={`relative min-h-[100vh] ${hasNav ? `pt-36` : ``} ${
         hasFooter ? `pb-64` : ``
       }`}
     >
       <header>{hasNav && <GNB />}</header>
-      <div className="w-full min-h-[100%]">{RoutesComponent}</div>
+      <div className="w-full h-full">{RoutesComponent}</div>
       <footer>{hasFooter && <Footer />}</footer>
     </div>
   );

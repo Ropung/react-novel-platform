@@ -1,4 +1,5 @@
 import HomePage from "@components/home/HomePage";
+import NovelPage from "@components/novel/NovelPage";
 import LoginPage from "@components/users/login/LoginPage";
 import SignupPage from "@components/users/signup/SignupPage";
 import Path from "@utils/routes/Path";
@@ -10,7 +11,7 @@ const UnauthenticatedRoutes = () => {
   return (
     <Routes>
       <Route path={HOME} element={<HomePage />} />
-      <Route path={NOVEL} element={<HomePage />} />
+      <Route path={NOVEL} element={<NovelPage />} />
       <Route path={CARTOON} element={<HomePage />} />
       <Route path={WORKLIST} element={<HomePage />} />
       <Route path={LOGIN} element={<LoginPage />} />
