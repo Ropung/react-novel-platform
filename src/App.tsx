@@ -53,7 +53,7 @@ function App() {
       }`}
     >
       <header>{hasNav && <GNB />}</header>
-      <div className="w-full min-h-[100%] px-16 py-8">{RoutesComponent}</div>
+      <div className="w-full min-h-[100%]">{RoutesComponent}</div>
       <footer>{hasFooter && <Footer />}</footer>
     </div>
   );

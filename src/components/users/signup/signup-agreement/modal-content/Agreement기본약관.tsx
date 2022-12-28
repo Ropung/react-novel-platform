@@ -7,7 +7,7 @@ const Agreement기본약관 = () => {
   return (
     <main>
       {/* 기본약관  */}
-      <section className="w-[90vw] h-[80vh] bg-white border border-gray-300 shadow-md px-4 pb-20 pt-4">
+      <section className="w-[90vw] h-[80vh] bg-white border border-gray-300 shadow-md px-4 pt-4">
         <header className="flex justify-between items-center h-16 px-2 border-b pb-4">
           <h1 className="text-4xl">기본약관</h1>
         </header>

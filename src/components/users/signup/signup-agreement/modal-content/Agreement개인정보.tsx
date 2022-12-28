@@ -6,30 +6,30 @@ const Agreement개인정보 = () => {
       {/* 모달창닫기 */}
       <aside className=""></aside>
       {/* 개인정보 모달 */}
-      <body className="w-[90vw] h-[70vh] bg-white border border-gray-300 shadow-md px-4 pb-20 pt-4 overflow-hidden">
+      <body className="w-[90vw] h-[70vh] bg-white border border-gray-300 shadow-md px-4 pt-4 overflow-hidden">
         <header className="flex justify-between items-center l px-2 border-b pb-4">
-          <p className="text-2xl  whitespace-nowrap">
+          <p className="text-2xl font-bold  whitespace-nowrap">
             [ Ropung 개인정보처리방침 ]
           </p>
         </header>
         <section className="w-full h-full overflow-y-scroll p-4 flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <p>
-              (주)더드림메이커스 ('ssayossa.co.kr'이하 '싸요싸')은(는)
-              「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를 보호하고
-              이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여
-              다음과 같이 개인정보 처리방침을 수립·공개합니다.
+              (주)Ropung플랫폼 ('Ropung')은(는) 「개인정보 보호법」 제30조에
+              따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고
+              원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보
+              처리방침을 수립·공개합니다.
             </p>
           </div>
           <p>○ 이 개인정보처리방침은 2022년 8월 15부터 적용됩니다.</p>
           <p className="font-bold py-4 w-full">제1조(개인정보의 처리 목적)</p>
 
           <h1 className="font-bold">
-            (주)더드림메이커스('ssayossa.co.kr'이하 '싸요싸')은(는) 다음의
-            목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의
-            목적 이외의 용도로는 이용되지 않으며 이용 목적이 변경되는 경우에는
-            「개인정보 보호법」 제18조에 따라 별도의 동의를 받는 등 필요한
-            조치를 이행할 예정입니다.
+            (주)Ropung플랫폼('Ropung')은(는)은(는) 다음의 목적을 위하여
+            개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의
+            용도로는 이용되지 않으며 이용 목적이 변경되는 경우에는 「개인정보
+            보호법」 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할
+            예정입니다.
           </h1>
           <ul className="flex flex-col gap-2">
             <li className="">

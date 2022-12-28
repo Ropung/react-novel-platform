@@ -122,84 +122,88 @@ const SignupAgreement = () => {
   };
 
   return (
-    <section>
-      <div className="border border-gray-800 shadow-md rounded-md bg-light p-8">
-        <div className="flex flex-wrap justify-center items-center gap-8">
-          <CheckableBox
-            checked={allChecked}
-            onChange={toggleAllChekced}
-            className={`w-[100%] flex justify-center border border-gray-500 !text-gary-500 checked-bg:!text-black`}
-          >
-            <p className="flex justify-center gap-4 items-center text-3xl leading-4">
-              <FaCheck />
-              <span className=" py-4 font-bold">전체동의</span>
-            </p>
-          </CheckableBox>
-          {/* 약관 리스트 */}
-          <ul className="flex flex-wrap px-2">
-            <li className="w-full flex justify-between items-center">
-              <label className="flex gap-2">
-                <AgreementCheck
-                  checked={initialAgreements.기본약관}
-                  content="싸요싸 멤버십 회원 이용약관(필수)"
-                  onChange={() => changeInitialAgreementOf("기본약관")}
-                />
-              </label>
-              {/* 이용약관 */}
-              <LinkButton
-                className="whitespace-nowrap"
-                onClick={() => callModalOf("기본약관")}
-              >
-                전문보기
-              </LinkButton>
-            </li>
-            <li className="w-full flex justify-between items-center">
-              <label className="flex gap-2">
-                <AgreementCheck
-                  checked={initialAgreements.개인정보}
-                  content="개인정보 수집 및 이용 동의 (필수)"
-                  onChange={() => changeInitialAgreementOf("개인정보")}
-                />
-              </label>
-              {/* 개인정보 수집이용  */}
-              <LinkButton
-                className="whitespace-nowrap"
-                onClick={() => callModalOf("개인정보")}
-              >
-                전문보기
-              </LinkButton>
-            </li>
-            <li className="w-full flex justify-between items-center">
-              <label className="flex gap-2">
-                <AgreementCheck
-                  checked={initialAgreements.위치기반서비스}
-                  content="위치기반 서비스 이용약관 동의(필수)"
-                  onChange={() => changeInitialAgreementOf("위치기반서비스")}
-                />
-              </label>
-              {/* 위치기반  */}
-              <LinkButton
-                className="whitespace-nowrap"
-                onClick={() => callModalOf("위치기반서비스")}
-              >
-                전문보기
-              </LinkButton>
-            </li>
-            <li className="w-full flex justify-between items-center">
-              <label className="flex gap-2">
-                <AgreementCheck
-                  checked={optionalAgreements.마케팅}
-                  content="마케팅 수신 동의(선택)"
-                  onChange={() => changeOptionalAgreementOf("마케팅")}
-                />
-              </label>
-              <LinkButton onClick={() => callModalOf("마케팅")}>
-                전문보기
-              </LinkButton>
-            </li>
-          </ul>
+    <section className="flex flex-col w-[60vw] gap-4 items-center justify-center bg-white py-4 px-6 border rounded-xl shadow-md p-8">
+      <div className="flex flex-col justify-center items-center gap-8">
+        {/* 약관 리스트 */}
+        <div className="w-full text-left text-2xl">
+          {/* <SignHeaderItem /> */}
+          <h1 className="text-2xl py-2 font-bold">약관동의</h1>
+          <div className="w-full border-b" />
         </div>
+        <ul className="flex flex-wrap px-2">
+          <li className="w-full flex justify-between items-center">
+            <label className="flex gap-2">
+              <AgreementCheck
+                checked={initialAgreements.기본약관}
+                content="Ropung 멤버십 회원 이용약관(필수)"
+                onChange={() => changeInitialAgreementOf("기본약관")}
+              />
+            </label>
+            {/* 이용약관 */}
+            <LinkButton
+              className="whitespace-nowrap"
+              onClick={() => callModalOf("기본약관")}
+            >
+              전문보기
+            </LinkButton>
+          </li>
+          <li className="w-full flex justify-between items-center">
+            <label className="flex gap-2">
+              <AgreementCheck
+                checked={initialAgreements.개인정보}
+                content="개인정보 수집 및 이용 동의 (필수)"
+                onChange={() => changeInitialAgreementOf("개인정보")}
+              />
+            </label>
+            {/* 개인정보 수집이용  */}
+            <LinkButton
+              className="whitespace-nowrap"
+              onClick={() => callModalOf("개인정보")}
+            >
+              전문보기
+            </LinkButton>
+          </li>
+          <li className="w-full flex justify-between items-center">
+            <label className="flex gap-2">
+              <AgreementCheck
+                checked={initialAgreements.위치기반서비스}
+                content="위치기반 서비스 이용약관 동의(필수)"
+                onChange={() => changeInitialAgreementOf("위치기반서비스")}
+              />
+            </label>
+            {/* 위치기반  */}
+            <LinkButton
+              className="whitespace-nowrap"
+              onClick={() => callModalOf("위치기반서비스")}
+            >
+              전문보기
+            </LinkButton>
+          </li>
+          <li className="w-full flex justify-between items-center">
+            <label className="flex gap-2">
+              <AgreementCheck
+                checked={optionalAgreements.마케팅}
+                content="마케팅 수신 동의(선택)"
+                onChange={() => changeOptionalAgreementOf("마케팅")}
+              />
+            </label>
+            <LinkButton onClick={() => callModalOf("마케팅")}>
+              전문보기
+            </LinkButton>
+          </li>
+        </ul>
+        <CheckableBox
+          checked={allChecked}
+          onChange={toggleAllChekced}
+          className={`w-full flex justify-center border !text-gary-500 checked-bg:!text-black`}
+        >
+          <p className="flex justify-center gap-4 items-center text-3xl leading-4">
+            <FaCheck />
+            <span className=" py-4 font-bold">전체동의</span>
+          </p>
+        </CheckableBox>
       </div>
+
       {is전문보기Open ? (
         <div
           className={`fixed right-0 left-0 top-0 bottom-0 flex flex-col justify-center items-center z-auto 
