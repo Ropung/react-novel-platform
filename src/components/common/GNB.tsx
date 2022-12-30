@@ -54,7 +54,7 @@ const GNB = () => {
         <div className="flex justify-between items-end">
           <Link
             to={HOME}
-            className="w-full items-center text-5xl font-bold tracking-wider"
+            className="items-center text-5xl font-bold tracking-wider"
           >
             Ropung
           </Link>

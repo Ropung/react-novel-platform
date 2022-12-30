@@ -8,13 +8,17 @@ import Path from "./utils/routes/Path";
 import { signUp } from "@utils/firebase/user";
 import UnauthenticatedRoutes from "@components/routes/UnauthenticatedRoutes";
 import ProtectedRoutes from "@components/routes/ProtectedRoutes";
+import TopNavViewer from "@components/novel/view/nav/TopNavViewer";
+import BottomNavViewer from "@components/novel/view/nav/BottomNavViewer";
 
 function App() {
   const location = useLocation();
-  const { HOME, LOGIN, NOVEL, SIGNUP, CARTOON, WORKLIST } = Path;
+  const { HOME, LOGIN, NOVEL, SIGNUP, CARTOON, WORKLIST, SERIES, VIEWER } =
+    Path;
 
   const [hasNav, setHasNav] = useState<boolean>(false);
   const [hasFooter, setHasFooter] = useState<boolean>(false);
+
   const [RoutesComponent, setRoutesComponent] =
     useState<React.ReactElement | null>(null);
 
@@ -33,11 +37,19 @@ function App() {
         : location.pathname;
 
     // Nav 띄우는 PATH
-    const hasNav = [HOME, NOVEL, LOGIN, SIGNUP, CARTOON, WORKLIST].includes(
+    const hasNav = [
+      HOME,
+      NOVEL,
+      LOGIN,
+      SIGNUP,
+      CARTOON,
+      WORKLIST,
+      SERIES,
+    ].includes(pathname);
+    // Footer 띄우는 PATH
+    const hasFooter = [HOME, NOVEL, CARTOON, WORKLIST, SERIES].includes(
       pathname
     );
-    // Footer 띄우는 PATH
-    const hasFooter = [HOME, NOVEL, CARTOON, WORKLIST].includes(pathname);
     setHasNav(hasNav);
     setHasFooter(hasFooter);
   }, [location.pathname]);

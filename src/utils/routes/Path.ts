@@ -5,6 +5,8 @@ const Path = {
   LOGIN: "/login",
   WORKLIST: "/worklist",
   CARTOON: "/cartoon",
+  SERIES: "/series",
+  VIEWER: "/viewer",
 };
 
 Object.freeze(Path);

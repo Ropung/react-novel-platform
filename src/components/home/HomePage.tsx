@@ -60,7 +60,7 @@ const HomePage = () => {
   ];
 
   return (
-    <main className="w-full flex items-center justify-center pt-20">
+    <main className="w-full flex items-center justify-center pt-12">
       <div className="w-[80vw] flex flex-col gap-16">
         {/* 상단 슬라이드배너 */}
         <div className="flex flex-row gap-2 py-4">
