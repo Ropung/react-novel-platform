@@ -1,15 +1,9 @@
 export default interface UserInfo {
+  email: string;
+  password: string;
   uid: string;
   username: string;
-  email: string;
   authorName: string;
-  birth: string;
   fullname: string;
+  birth: string;
 }
-export type UserInfoInput =
-  | "uid"
-  | "username"
-  | "email"
-  | "authorName"
-  | "birth"
-  | "fullname";

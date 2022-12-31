@@ -1,31 +1,43 @@
 import Path from "@/utils/routes/Path";
+import naviMenuProps from "@models/navmenu/NavMenu";
+import { auth } from "@utils/firebase";
+import { signOut } from "@utils/firebase/user";
+import { useLayoutEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const GNB = () => {
-  const { HOME, NOVEL, LOGIN, SIGNUP, WORKLIST, CARTOON } = Path;
+  const { HOME, NOVEL, LOGIN, SIGNUP, WORKLIST, CARTOON, My, LOGOUT } = Path;
 
-  const TopNavMenuList = [
+  const topNavMenuList = [
     {
       content: "회원가입",
       linkTo: SIGNUP,
-      replace: false,
+      replace: true,
     },
     {
       content: "로그인",
       linkTo: LOGIN,
-      replace: false,
+      replace: true,
+    },
+  ];
+
+  const authTopNavMenuList = [
+    {
+      content: "마이페이지",
+      linkTo: My,
+      replace: true,
+    },
+    {
+      content: "로그아웃",
+      linkTo: LOGOUT,
+      replace: true,
     },
   ];
 
   const navMenuList = [
     {
-      content: "홈",
-      linkTo: HOME,
-      replace: false,
-    },
-    {
       content: "웹소설",
-      linkTo: NOVEL,
+      linkTo: HOME,
       replace: false,
     },
     {
@@ -40,16 +52,37 @@ const GNB = () => {
     },
   ];
 
+  // const [isAuthDisabled, setAuthDisabled] = useState<boolean>(false);
+
+  // useLayoutEffect(() => {
+  //   if (isAuthDisabled) {
+  //     return;
+  //   }
+  // }, [auth.currentUser, authTopNavMenuList, topNavMenuList]);
+
   return (
     <nav className="w-screen fixed top-0 right-0 left-0 z-[100] flex flex-row h-36 bg-light text-dark select-none px-8 border-b shadow-md">
       <div className="w-full flex flex-col gap-6 px-8 py-4">
         {/* 탑 네비 메뉴 */}
         <ul className="flex flex-row gap-2 justify-end font-bold">
-          {TopNavMenuList.map((menu) => (
-            <Link to={menu.linkTo} key={menu.content} replace={menu.replace}>
-              <li className="cursor-pointer">{menu.content}</li>
-            </Link>
-          ))}
+          {(auth.currentUser ? authTopNavMenuList : topNavMenuList).map(
+            (menu) => (
+              <Link to={menu.linkTo} key={menu.content} replace={menu.replace}>
+                <li
+                  className="cursor-pointer"
+                  onClick={() => {
+                    menu.content == "로그아웃" &&
+                      auth.currentUser &&
+                      signOut()
+                        .then((result) => console.log("result:", result))
+                        .catch(console.error);
+                  }}
+                >
+                  {menu.content}
+                </li>
+              </Link>
+            )
+          )}
         </ul>
         <div className="flex justify-between items-end">
           <Link

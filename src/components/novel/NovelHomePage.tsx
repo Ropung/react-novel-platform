@@ -2,7 +2,7 @@ import bannersProps from "@/models/banner/banner";
 import novelsProps from "@/models/novel/novel";
 import { BsArrowLeftSquareFill } from "react-icons/bs";
 
-const HomePage = () => {
+const NovelHomePage = () => {
   const bannerList: bannersProps[] = [
     {
       url: "http://blog.jinbo.net/attach/615/200937431.jpg",
@@ -108,7 +108,7 @@ const HomePage = () => {
             <li className="flex flex-col gap-4">
               {/* Title */}
               <div className="w-full flex flex-row justify-between items-center">
-                <p className="text-4xl font-bold">오늘의 인기작</p>
+                <p className="text-4xl font-bold">신작</p>
                 <div className="flex flex-row gap-2 justify-end text-4xl">
                   <BsArrowLeftSquareFill className="cursor-pointer" />
                   <BsArrowLeftSquareFill className=" cursor-pointer rotate-180" />
@@ -136,7 +136,7 @@ const HomePage = () => {
             <li className="flex flex-col gap-4">
               {/* Title */}
               <div className="w-full flex flex-row justify-between items-center">
-                <p className="text-4xl font-bold">오늘의 인기작</p>
+                <p className="text-4xl font-bold">추천작</p>
                 <div className="flex flex-row gap-2 justify-end text-4xl">
                   <BsArrowLeftSquareFill className="cursor-pointer" />
                   <BsArrowLeftSquareFill className=" cursor-pointer rotate-180" />
@@ -164,7 +164,7 @@ const HomePage = () => {
             <li className="flex flex-col gap-4">
               {/* Title */}
               <div className="w-full flex flex-row justify-between items-center">
-                <p className="text-4xl font-bold">오늘의 인기작</p>
+                <p className="text-4xl font-bold">요일작</p>
                 <div className="flex flex-row gap-2 justify-end text-4xl">
                   <BsArrowLeftSquareFill className="cursor-pointer" />
                   <BsArrowLeftSquareFill className=" cursor-pointer rotate-180" />
@@ -192,4 +192,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default NovelHomePage;

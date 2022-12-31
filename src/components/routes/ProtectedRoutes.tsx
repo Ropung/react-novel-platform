@@ -1,4 +1,4 @@
-import HomePage from "@components/home/HomePage";
+import NovelHomePage from "@components/novel/NovelHomePage";
 import NovelWorkListPage from "@components/novel/works/NovelWorkListPage";
 import NovelSeriesListPage from "@components/novel/series/NovelSeriesListPage";
 import Path from "@utils/routes/Path";
@@ -10,9 +10,9 @@ const ProtectedRoutes = () => {
 
   return (
     <Routes>
-      <Route path={HOME} element={<HomePage />} />
+      <Route path={HOME} element={<NovelHomePage />} />
       <Route path={NOVEL} element={<NovelWorkListPage />} />
-      <Route path={CARTOON} element={<HomePage />} />
+      <Route path={CARTOON} element={<NovelHomePage />} />
       <Route path={WORKLIST} element={<NovelWorkListPage />} />
       <Route path={SERIES} element={<NovelSeriesListPage />} />
       <Route path={VIEWER} element={<NovelViewPage />} />

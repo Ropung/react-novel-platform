@@ -1,5 +1,6 @@
 import MainButton, { DarkButton } from "@styles/ui-components/button";
-import { signUp } from "@utils/firebase/user";
+import { auth } from "@utils/firebase";
+import { signIn, signUp } from "@utils/firebase/user";
 import Path from "@utils/routes/Path";
 import { useRef, useState } from "react";
 import {
@@ -10,13 +11,13 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const LoginInputInfoPage = () => {
-  const { SIGNUP } = Path;
+  const { SIGNUP, NOVEL } = Path;
   const navigate = useNavigate();
 
   const [canSeePW, setCanSeePW] = useState<boolean>(false);
 
   const userEmailRef = useRef<HTMLInputElement | null>(null);
-  const passwordFormRef = useRef<HTMLInputElement | null>(null);
+  const userPasswordFormRef = useRef<HTMLInputElement | null>(null);
 
   return (
     <section className="w-[60vw] flex flex-col gap-8 items-center justify-center bg-white py-20 px-8 border rounded-xl shadow-md">
@@ -34,7 +35,10 @@ const LoginInputInfoPage = () => {
               name="email"
               placeholder="아이디(이메일)"
               ref={userEmailRef}
-              onChange={(evt) => {}}
+              onChange={(evt) => {
+                const newregisterEmail = evt.target.value;
+                console.log(newregisterEmail);
+              }}
               required
             />
           </fieldset>
@@ -42,7 +46,7 @@ const LoginInputInfoPage = () => {
           <fieldset className="w-full flex flex-col gap-2">
             <label className="relative">
               <input
-                ref={passwordFormRef}
+                ref={userPasswordFormRef}
                 className={`border w-full h-8 rounded-sm py-8 px-4 valid:border-success`}
                 type={canSeePW ? "text" : "password"}
                 name="password"
@@ -72,8 +76,21 @@ const LoginInputInfoPage = () => {
           </fieldset>
         </div>
         {/* 버튼 div */}
-        <div className="w-full flex flex-col gap-2 text-2xl font-bold">
-          <MainButton className="w-full !py-4">로그인</MainButton>
+        <div className="w-full flex flex-col gap-4 text-2xl font-bold">
+          <MainButton
+            className="w-full !py-4"
+            onClick={() => {
+              signIn(
+                userEmailRef.current?.value ?? "",
+                userPasswordFormRef.current?.value ?? ""
+              )
+                .then((result) => console.log("result:", result))
+                .catch(console.error);
+              auth.currentUser && navigate(NOVEL, { replace: true });
+            }}
+          >
+            로그인
+          </MainButton>
 
           <DarkButton
             className="w-full !py-4"

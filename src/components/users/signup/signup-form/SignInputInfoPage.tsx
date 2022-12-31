@@ -1,11 +1,13 @@
 import MainButton from "@styles/ui-components/button";
-import { useCallback, useRef, useState } from "react";
+import { auth } from "@utils/firebase";
+import { signUp } from "@utils/firebase/user";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const SignInputInfoPage = () => {
   const userEmailRef = useRef<HTMLInputElement | null>(null);
-  const passwordFormRef = useRef<HTMLInputElement | null>(null);
-  const passwordFirmFormRef = useRef<HTMLInputElement | null>(null);
+  const userPasswordFormRef = useRef<HTMLInputElement | null>(null);
+  const userPasswordFirmFormRef = useRef<HTMLInputElement | null>(null);
   const bYearRef = useRef<HTMLSelectElement | null>(null);
   const bMonthRef = useRef<HTMLSelectElement | null>(null);
   const bDateRef = useRef<HTMLSelectElement | null>(null);
@@ -15,8 +17,13 @@ const SignInputInfoPage = () => {
 
   const [canSeePW, setCanSeePW] = useState<boolean>(false);
   const [canSeeFirmPW, setCanSeeFirmPW] = useState<boolean>(false);
-  // 가입신청
-  const [validPassed, setValidPassed] = useState<boolean>(false);
+
+  // 가입신청 공백체크
+  const [validPassed, setValidPassed] = useState<boolean>(true);
+
+  useLayoutEffect(() => {
+    //
+  }, []);
 
   const now = new Date();
   const today = new Date(
@@ -55,11 +62,6 @@ const SignInputInfoPage = () => {
     );
   }, []);
 
-  // focused map
-  // const [focusedMap, setFocusedMap] = useState<{
-  //   [name in keyof Partial<UserInfo> & Partial<AuthInfo>]: boolean;
-  // }>({});
-
   return (
     <section className="flex flex-col w-[60vw] gap-8 items-center justify-center bg-white py-4 px-6 border rounded-xl shadow-md">
       <div className="w-full text-left text-2xl">
@@ -80,7 +82,10 @@ const SignInputInfoPage = () => {
             type="email"
             name="email"
             ref={userEmailRef}
-            onChange={(evt) => {}}
+            onChange={(evt) => {
+              const newregisterEmail = evt.target.value;
+              console.log(newregisterEmail);
+            }}
             required
           />
         </fieldset>
@@ -93,14 +98,15 @@ const SignInputInfoPage = () => {
           </p>
           <label className="relative">
             <input
-              ref={passwordFormRef}
+              ref={userPasswordFormRef}
               className={`border w-full leading-8 rounded-sm valid:border-success`}
               type={canSeePW ? "text" : "password"}
               name="password"
               onChange={(evt) => {
                 // Check if 한글입력 등 when type="text"
                 const passwordExp = /[^A-Za-z\d$@$!%*#?&]/g;
-                evt.target.value = evt.target.value.replace(passwordExp, "");
+                const newRegisterPassword = evt.target.value;
+                newRegisterPassword.replace(passwordExp, "");
               }}
               pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
               required
@@ -129,14 +135,15 @@ const SignInputInfoPage = () => {
           </p>
           <label className="relative">
             <input
-              ref={passwordFirmFormRef}
+              ref={userPasswordFirmFormRef}
               className={`border w-full leading-8 rounded-sm valid:border-success`}
               type={canSeeFirmPW ? "text" : "password"}
               name="password"
               onChange={(evt) => {
                 // Check if 한글입력 등 when type="text"
                 const passwordExp = /[^A-Za-z\d$@$!%*#?&]/g;
-                evt.target.value = evt.target.value.replace(passwordExp, "");
+                const newRegisterFirmPassword = evt.target.value;
+                newRegisterFirmPassword.replace(passwordExp, "");
               }}
               pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
               required
@@ -247,9 +254,14 @@ const SignInputInfoPage = () => {
         className={`w-full !py-4 !rounded-lg font-bold text-3xl ${
           !validPassed ? "bg-default" : ""
         }`}
-        disabled={!validPassed}
+        // disabled={validPassed}
         onClick={() => {
-          console.log("asdf");
+          signUp(
+            userEmailRef.current?.value ?? "",
+            userPasswordFormRef.current?.value ?? ""
+          )
+            .then((result) => console.log("result:", result))
+            .catch(console.error);
         }}
       >
         가입신청

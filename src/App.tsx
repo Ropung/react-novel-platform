@@ -1,15 +1,12 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Footer from "./components/common/Footer";
 import GNB from "./components/common/GNB";
-import { db } from "@utils/firebase";
+import { db, auth } from "@utils/firebase";
 import "firebase/firestore";
 import Path from "./utils/routes/Path";
-import { signUp } from "@utils/firebase/user";
 import UnauthenticatedRoutes from "@components/routes/UnauthenticatedRoutes";
 import ProtectedRoutes from "@components/routes/ProtectedRoutes";
-import TopNavViewer from "@components/novel/view/nav/TopNavViewer";
-import BottomNavViewer from "@components/novel/view/nav/BottomNavViewer";
 
 function App() {
   const location = useLocation();
@@ -22,13 +19,12 @@ function App() {
   const [RoutesComponent, setRoutesComponent] =
     useState<React.ReactElement | null>(null);
 
-  // FIXME 임시 Auth
-  const [isAuthenticated, setAuthenticated] = useState<boolean>(false);
+  useLayoutEffect(() => {
+    auth.currentUser && setRoutesComponent(<ProtectedRoutes />);
+    !auth.currentUser && setRoutesComponent(<UnauthenticatedRoutes />);
 
-  useEffect(() => {
-    isAuthenticated && setRoutesComponent(<ProtectedRoutes />);
-    !isAuthenticated && setRoutesComponent(<UnauthenticatedRoutes />);
-  }, [isAuthenticated]);
+    console.log("isLoggedIn:", auth.currentUser);
+  }, [auth.currentUser]);
 
   useLayoutEffect(() => {
     const pathname =
@@ -53,12 +49,6 @@ function App() {
     setHasNav(hasNav);
     setHasFooter(hasFooter);
   }, [location.pathname]);
-
-  useLayoutEffect(() => {
-    signUp("abc123@naver.com", "1234")
-      .then((result) => console.log(result))
-      .catch(console.error);
-  }, []);
 
   return (
     <div

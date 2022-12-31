@@ -3,13 +3,13 @@ import "firebase/firestore";
 import "firebase/auth";
 
 var firebaseConfig = {
-  apiKey: "AIzaSyAJKEA9Trn_VYxCkpCeU-a3fhXvGgS6fpY",
-  authDomain: "novel-platform.firebaseapp.com",
-  projectId: "novel-platform",
-  storageBucket: "novel-platform.appspot.com",
-  messagingSenderId: "301617050831",
-  appId: "1:301617050831:web:784e0ae0e3bd811d3633ba",
-  measurementId: "G-31QP8JCZN8",
+  apiKey: import.meta.env.VITE_APP_FB_API_KEY,
+  authDomain: import.meta.env.VITE_APP_FB_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_APP_FB_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_APP_FB_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_APP_FB_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_FB_API_ID,
+  measurementId: import.meta.env.VITE_APP_FB_MEASUREMENT_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
