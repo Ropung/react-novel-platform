@@ -1,29 +1,30 @@
 import MainButton from "@styles/ui-components/button";
 import { auth } from "@utils/firebase";
-import { signUp } from "@utils/firebase/user";
+import { signUp, userDB } from "@utils/firebase/user";
+import Path from "@utils/routes/Path";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { useNavigate } from "react-router";
 
 const SignInputInfoPage = () => {
+  const navigate = useNavigate();
+
+  const { HOME } = Path;
+
   const userEmailRef = useRef<HTMLInputElement | null>(null);
   const userPasswordFormRef = useRef<HTMLInputElement | null>(null);
   const userPasswordFirmFormRef = useRef<HTMLInputElement | null>(null);
+  const userAuthorNameRef = useRef<HTMLInputElement | null>(null);
+  const userFullnameRef = useRef<HTMLInputElement | null>(null);
   const bYearRef = useRef<HTMLSelectElement | null>(null);
   const bMonthRef = useRef<HTMLSelectElement | null>(null);
   const bDateRef = useRef<HTMLSelectElement | null>(null);
-
-  const authorNameRef = useRef<HTMLInputElement | null>(null);
-  const fullnameRef = useRef<HTMLInputElement | null>(null);
 
   const [canSeePW, setCanSeePW] = useState<boolean>(false);
   const [canSeeFirmPW, setCanSeeFirmPW] = useState<boolean>(false);
 
   // 가입신청 공백체크
   const [validPassed, setValidPassed] = useState<boolean>(true);
-
-  useLayoutEffect(() => {
-    //
-  }, []);
 
   const now = new Date();
   const today = new Date(
@@ -174,12 +175,9 @@ const SignInputInfoPage = () => {
             className={`border w-full leading-8 rounded-sm`}
             type="text"
             name="authorName"
-            ref={authorNameRef}
+            ref={userAuthorNameRef}
             maxLength={13}
             minLength={4}
-            onChange={(evt) => {
-              //
-            }}
             required
           />
         </fieldset>
@@ -194,7 +192,7 @@ const SignInputInfoPage = () => {
             className={`border w-full leading-8 rounded-sm`}
             type="text"
             name="fullname"
-            ref={fullnameRef}
+            ref={userFullnameRef}
             onChange={(evt) => {
               evt.target.value = evt.target.value.replace(/[^ㄱ-ㅎ가-힣]/g, "");
             }}
@@ -256,11 +254,28 @@ const SignInputInfoPage = () => {
         }`}
         // disabled={validPassed}
         onClick={() => {
+          const newBirth =
+            bYearRef.current?.value +
+            "." +
+            bMonthRef.current?.value +
+            "." +
+            bDateRef.current?.value;
+
           signUp(
             userEmailRef.current?.value ?? "",
             userPasswordFormRef.current?.value ?? ""
           )
-            .then((result) => console.log("result:", result))
+            .then((result) => {
+              console.log("result:", result);
+              userDB(
+                userEmailRef.current?.value ?? "",
+                auth.currentUser?.uid ?? "",
+                userAuthorNameRef.current?.value ?? "",
+                userFullnameRef.current?.value ?? "",
+                newBirth
+              );
+              navigate(HOME, { replace: true });
+            })
             .catch(console.error);
         }}
       >

@@ -1,9 +1,7 @@
 export default interface UserInfo {
-  email: string;
-  password: string;
-  uid: string;
-  username: string;
-  authorName: string;
-  fullname: string;
-  birth: string;
+  authorName: string | null | undefined;
+  birth:string | null | undefined;
+  email: string | null | undefined;
+  fullname: string | null | undefined;
+  uid: string | null | undefined;
 }

@@ -10,8 +10,18 @@ import ProtectedRoutes from "@components/routes/ProtectedRoutes";
 
 function App() {
   const location = useLocation();
-  const { HOME, LOGIN, NOVEL, SIGNUP, CARTOON, WORKLIST, SERIES, VIEWER } =
-    Path;
+  const {
+    HOME,
+    LOGIN,
+    NOVEL,
+    SIGNUP,
+    CARTOON,
+    WORKLIST,
+    SERIES,
+    VIEWER,
+    MY,
+    LOGOUT,
+  } = Path;
 
   const [hasNav, setHasNav] = useState<boolean>(false);
   const [hasFooter, setHasFooter] = useState<boolean>(false);
@@ -41,6 +51,7 @@ function App() {
       CARTOON,
       WORKLIST,
       SERIES,
+      MY,
     ].includes(pathname);
     // Footer 띄우는 PATH
     const hasFooter = [HOME, NOVEL, CARTOON, WORKLIST, SERIES].includes(
@@ -48,7 +59,7 @@ function App() {
     );
     setHasNav(hasNav);
     setHasFooter(hasFooter);
-  }, [location.pathname]);
+  }, [location.pathname, auth.currentUser]);
 
   return (
     <div

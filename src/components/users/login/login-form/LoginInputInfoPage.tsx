@@ -2,7 +2,7 @@ import MainButton, { DarkButton } from "@styles/ui-components/button";
 import { auth } from "@utils/firebase";
 import { signIn, signUp } from "@utils/firebase/user";
 import Path from "@utils/routes/Path";
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import {
   AiFillEye,
   AiFillEyeInvisible,
@@ -11,7 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const LoginInputInfoPage = () => {
-  const { SIGNUP, NOVEL } = Path;
+  const { SIGNUP, NOVEL, HOME } = Path;
   const navigate = useNavigate();
 
   const [canSeePW, setCanSeePW] = useState<boolean>(false);
@@ -86,7 +86,8 @@ const LoginInputInfoPage = () => {
               )
                 .then((result) => console.log("result:", result))
                 .catch(console.error);
-              auth.currentUser && navigate(NOVEL, { replace: true });
+
+              navigate(HOME, { replace: true });
             }}
           >
             로그인

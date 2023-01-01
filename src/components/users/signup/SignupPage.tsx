@@ -1,4 +1,3 @@
-import MainButton from "@styles/ui-components/button";
 import SignupAgreement from "./signup-agreement/SignupAgreement";
 import SignInputInfoPage from "./signup-form/SignInputInfoPage";
 
