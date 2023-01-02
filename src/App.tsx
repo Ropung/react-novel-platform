@@ -34,7 +34,7 @@ function App() {
     auth.currentUser && setRoutesComponent(<ProtectedRoutes />);
     !auth.currentUser && setRoutesComponent(<UnauthenticatedRoutes />);
 
-    console.log("isLoggedIn:", auth.currentUser);
+    console.log("로그인상태:", auth.currentUser);
   }, [auth.currentUser]);
 
   useLayoutEffect(() => {

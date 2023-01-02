@@ -13,11 +13,11 @@ const MyPage = () => {
   const navigate = useNavigate();
   const { MODIFYINFO } = Path;
   const [userData, setUserData] = useState<UserInfo>({
-    authorName: "asdf",
-    birth: "",
-    email: "",
-    fullname: "",
-    uid: "",
+    authorName: "불러오는중...",
+    birth: "불러오는중...",
+    email: "불러오는중...",
+    fullname: "불러오는중...",
+    uid: "불러오는중...",
   });
 
   const handleCopyClipBoard = async (text: string) => {

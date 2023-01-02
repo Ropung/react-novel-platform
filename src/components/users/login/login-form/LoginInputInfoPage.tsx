@@ -1,8 +1,8 @@
 import MainButton, { DarkButton } from "@styles/ui-components/button";
-import { auth } from "@utils/firebase";
-import { signIn, signUp } from "@utils/firebase/user";
+
+import { signIn } from "@utils/firebase/user";
 import Path from "@utils/routes/Path";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   AiFillEye,
   AiFillEyeInvisible,

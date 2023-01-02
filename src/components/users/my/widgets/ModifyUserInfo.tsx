@@ -18,7 +18,9 @@ const ModifyUserInfo = () => {
     fullname: "",
     uid: "",
   });
-  const [initText, setInitText] = useState<string>(userData.authorName ?? "");
+  const [initText, setInitText] = useState<string>(
+    userData.authorName ?? "정보없음"
+  );
 
   useEffect(() => {
     db.collection("users")
