@@ -21,6 +21,7 @@ function App() {
     VIEWER,
     MY,
     LOGOUT,
+    MODIFYINFO,
   } = Path;
 
   const [hasNav, setHasNav] = useState<boolean>(false);
@@ -52,6 +53,7 @@ function App() {
       WORKLIST,
       SERIES,
       MY,
+      MODIFYINFO,
     ].includes(pathname);
     // Footer 띄우는 PATH
     const hasFooter = [HOME, NOVEL, CARTOON, WORKLIST, SERIES].includes(

@@ -84,10 +84,11 @@ const LoginInputInfoPage = () => {
                 userEmailRef.current?.value ?? "",
                 userPasswordFormRef.current?.value ?? ""
               )
-                .then((result) => console.log("result:", result))
+                .then((result) => {
+                  console.log("로그인성공:", result);
+                  navigate(HOME, { replace: true });
+                })
                 .catch(console.error);
-
-              navigate(HOME, { replace: true });
             }}
           >
             로그인

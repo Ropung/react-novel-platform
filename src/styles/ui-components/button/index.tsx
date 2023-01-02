@@ -6,7 +6,8 @@ import { FunctionComponent as FC } from "react";
 
 const ButtonInterface: FC<CommonButtonProps> = (props) => {
   const { children, className, onClick, ...restProps } = props;
-
+  const baseStyleClasses =
+    "border border-2 rounded-md p-2 disabled:bg-gray-400 transition duration-150 active:scale-95 disabled:active:scale-[1.02]";
   return (
     <button
       {...restProps}
@@ -14,7 +15,7 @@ const ButtonInterface: FC<CommonButtonProps> = (props) => {
         evt.preventDefault(); // form 태그 안에서 submit 버튼으로 인식하지 않도록
         onClick && onClick(evt);
       }}
-      className={`px-4 py-2 rounded duration-150 active:scale-95 ${className}`}
+      className={`px-4 py-2 rounded duration-150 active:scale-95 ${className} ${baseStyleClasses}`}
     >
       {children}
     </button>
@@ -43,6 +44,19 @@ export const SubButton: FC<CommonButtonProps> = (props) => {
     <ButtonInterface
       {...restProps}
       className={`bg-sub text-sub-contra ${className}`}
+    >
+      {children}
+    </ButtonInterface>
+  );
+};
+
+export const DefaultButton: FC<CommonButtonProps> = (props) => {
+  const { className, children, ...restProps } = props;
+
+  return (
+    <ButtonInterface
+      {...restProps}
+      className={`bg-default text-default-contra ${className}`}
     >
       {children}
     </ButtonInterface>

@@ -90,7 +90,12 @@ const GNB = () => {
   return (
     <nav className="w-full fixed top-0 right-0 left-0 z-[100] flex flex-row h-36 bg-light text-dark select-none px-8 border-b shadow-md">
       <div className="w-full flex flex-row justify-between items-center gap-6 px-8 py-4">
-        <div className="flex justify-start items-end gap-12">
+        <div
+          className="flex justify-start items-end gap-12"
+          onClick={() => {
+            setMyModal(false);
+          }}
+        >
           <Link
             to={HOME}
             className="items-center text-5xl font-bold tracking-wider"
@@ -136,7 +141,13 @@ const GNB = () => {
               className={`absolute top-[120%] right-0 w-[30vw] bg-white border border-gray-200 rounded-md shadow-md p-4`}
             >
               <div className="w-full h-fit flex flex-col gap-2">
-                <div className="w-full flex justify-center gap-1 font-bold border border-main bg-white px-4 py-2 rounded-md">
+                <div
+                  className="w-full flex justify-center gap-1 font-bold border border-main bg-white px-4 py-2 rounded-md"
+                  onClick={() => {
+                    navigate(MY, { replace: true });
+                    setMyModal(false);
+                  }}
+                >
                   <span>{userData.fullname}</span>
                   <span>님</span>
                 </div>
@@ -159,10 +170,13 @@ const GNB = () => {
                 <MainButton
                   className="w-full"
                   onClick={() => {
-                    auth.currentUser &&
-                      signOut()
-                        .then((result) => console.log("result:", result))
-                        .catch(console.error);
+                    if (!auth.currentUser) {
+                      return;
+                    }
+                    signOut()
+                      .then((result) => console.log("result:", result))
+                      .catch(console.error);
+                    navigate(HOME, { replace: true });
                   }}
                 >
                   로그아웃

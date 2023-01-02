@@ -9,6 +9,7 @@ const Path = {
   LOGIN: "/login",
   LOGOUT: "/logout",
   MY: "/my",
+  MODIFYINFO: "/modyfy_info",
 };
 
 Object.freeze(Path);
