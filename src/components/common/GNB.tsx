@@ -1,67 +1,88 @@
 import Path from "@/utils/routes/Path";
 import { auth, db } from "@utils/firebase";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaUserCheck } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { signOut } from "@utils/firebase/user";
 import MainButton from "@styles/ui-components/button";
 import UserInfo from "@models/user/UserInfo";
-import { TfiWrite } from "react-icons/tfi";
 import { MdEmojiEvents } from "react-icons/md";
-import { IoFolderOpenOutline } from "react-icons/io5";
 
 const GNB = () => {
-  const { HOME, NOVEL, LOGIN, SIGNUP, WORKLIST, CARTOON, MY, LOGOUT } = Path;
-
+  const {
+    HOME,
+    NOVEL,
+    LOGIN,
+    CARTOON,
+    MY,
+    EVENT,
+    MANAGEMENTLIST,
+    MANAGE_HOME,
+    MANAGE_ADD,
+  } = Path;
+  const location = useLocation();
   const navigate = useNavigate();
-  const topNavMenuList = [
-    {
-      content: "회원가입",
-      linkTo: SIGNUP,
-      replace: true,
-    },
-    {
-      content: "로그인",
-      linkTo: LOGIN,
-      replace: true,
-    },
-  ];
 
-  const authTopNavMenuList = [
-    {
-      content: "마이페이지",
-      linkTo: MY,
-      replace: true,
-    },
-    {
-      content: "로그아웃",
-      linkTo: LOGOUT,
-      replace: true,
-    },
-  ];
-
-  const navMenuList = [
+  const menuList = [
+    // Main navi List
     {
       content: "홈",
       linkTo: HOME,
       replace: false,
+      position: "main",
     },
     {
       content: "웹소설",
       linkTo: NOVEL,
       replace: false,
+      position: "main",
     },
     {
       content: "웹툰",
       linkTo: CARTOON,
       replace: false,
+      position: "main",
+    },
+    // Work Navi List
+    {
+      content: "홈",
+      linkTo: HOME,
+      replace: false,
+      position: "management",
+    },
+    {
+      content: "작품관리",
+      linkTo: MANAGE_HOME,
+      replace: false,
+      position: "management",
     },
     {
       content: "작품목록",
-      linkTo: WORKLIST,
+      linkTo: MANAGEMENTLIST,
       replace: false,
+      position: "management",
+    },
+
+    // My Menu List
+    {
+      content: "이벤트",
+      linkTo: EVENT,
+      replace: false,
+      position: "my",
+    },
+    {
+      content: "작품관리",
+      linkTo: MANAGE_HOME,
+      replace: false,
+      position: "my",
+    },
+    {
+      content: "작품등록",
+      linkTo: MANAGE_ADD,
+      replace: false,
+      position: "my",
     },
   ];
 
@@ -104,11 +125,22 @@ const GNB = () => {
           </Link>
           {/* 미들 네비 메뉴 */}
           <ul className="flex flex-row items-end justify-center text-2xl whitespace-nowrap gap-6">
-            {navMenuList.map((menu) => (
-              <Link to={menu.linkTo} key={menu.content} replace={menu.replace}>
-                <li className="cursor-pointer">{menu.content}</li>
-              </Link>
-            ))}
+            {menuList
+              .filter((item) => {
+                const PathNav =
+                  location.pathname === MANAGE_HOME
+                    ? item.position === "management"
+                    : item.position === "main";
+                return PathNav;
+              })
+              .map((menu) => (
+                <li
+                  key={menu.content}
+                  onClick={() => navigate(menu.linkTo, { replace: true })}
+                >
+                  <li className="cursor-pointer">{menu.content}</li>
+                </li>
+              ))}
           </ul>
         </div>
         <div className="flex flex-row gap-2 justify-end items-center font-bold relative">
@@ -125,7 +157,6 @@ const GNB = () => {
               className="flex flex-row gap-2 items-center"
               onClick={() => {
                 setMyModal(!isMyModal);
-                console.log("isMyModal:", isMyModal);
               }}
             >
               <FaUserCheck className="text-5xl" />
@@ -153,18 +184,24 @@ const GNB = () => {
                 </div>
                 <p className="w-full border-b border-gray-400"></p>
                 <ul className="w-full flex flex-col py-2 gap-2 items-center justify-center">
-                  <li className="w-full flex flex-row gap-2 justify-start items-center px-2 cursor-pointer">
-                    <MdEmojiEvents />
-                    <span>이벤트</span>
-                  </li>
-                  <li className="w-full flex flex-row gap-2 justify-start items-center px-2 cursor-pointer">
-                    <IoFolderOpenOutline />
-                    <span>작품등록</span>
-                  </li>
-                  <li className="w-full flex flex-row gap-2 justify-start items-center px-2 cursor-pointer">
-                    <TfiWrite />
-                    <span>작품관리</span>
-                  </li>
+                  {menuList
+                    .filter((item) => item.position === "my")
+                    .map((myMenu, index) => {
+                      return (
+                        <li
+                          key={index}
+                          className="w-full flex flex-row gap-2 justify-start items-center px-2 cursor-pointer"
+                          onClick={() => {
+                            navigate(myMenu.linkTo, {
+                              replace: myMenu.replace,
+                            });
+                          }}
+                        >
+                          <MdEmojiEvents />
+                          <span>{myMenu.content}</span>
+                        </li>
+                      );
+                    })}
                 </ul>
                 <span className="border-t border-gray-400" />
                 <MainButton

@@ -60,7 +60,7 @@ const NovelHomePage = () => {
   ];
 
   return (
-    <main className="w-full flex items-center justify-center pt-12">
+    <main className="w-full flex items-center justify-center py-12">
       <div className="w-[80vw] flex flex-col gap-16">
         {/* 상단 슬라이드배너 */}
         <div className="flex flex-row gap-2 py-4">
@@ -74,13 +74,13 @@ const NovelHomePage = () => {
           ))}
         </div>
         {/* 테마 별 작품 목록 */}
-        <div className="flex flex-col gap-32">
+        <div className="flex flex-col gap-12">
           <ul className="w-full flex flex-col gap-2">
             {/* 카테고리별나누기 map 함수로 */}
             <li className="flex flex-col gap-4">
               {/* Title */}
               <div className="w-full flex flex-row justify-between items-center">
-                <p className="text-4xl font-bold">오늘의 인기작</p>
+                <p className="text-2xl font-bold">오늘의 인기작</p>
                 <div className="flex flex-row gap-2 justify-end text-4xl">
                   <BsArrowLeftSquareFill className="cursor-pointer" />
                   <BsArrowLeftSquareFill className=" cursor-pointer rotate-180" />
@@ -108,7 +108,7 @@ const NovelHomePage = () => {
             <li className="flex flex-col gap-4">
               {/* Title */}
               <div className="w-full flex flex-row justify-between items-center">
-                <p className="text-4xl font-bold">신작</p>
+                <p className="text-2xl font-bold">신작</p>
                 <div className="flex flex-row gap-2 justify-end text-4xl">
                   <BsArrowLeftSquareFill className="cursor-pointer" />
                   <BsArrowLeftSquareFill className=" cursor-pointer rotate-180" />
@@ -136,7 +136,7 @@ const NovelHomePage = () => {
             <li className="flex flex-col gap-4">
               {/* Title */}
               <div className="w-full flex flex-row justify-between items-center">
-                <p className="text-4xl font-bold">추천작</p>
+                <p className="text-2xl font-bold">추천작</p>
                 <div className="flex flex-row gap-2 justify-end text-4xl">
                   <BsArrowLeftSquareFill className="cursor-pointer" />
                   <BsArrowLeftSquareFill className=" cursor-pointer rotate-180" />
@@ -164,7 +164,7 @@ const NovelHomePage = () => {
             <li className="flex flex-col gap-4">
               {/* Title */}
               <div className="w-full flex flex-row justify-between items-center">
-                <p className="text-4xl font-bold">요일작</p>
+                <p className="text-2xl font-bold">요일작</p>
                 <div className="flex flex-row gap-2 justify-end text-4xl">
                   <BsArrowLeftSquareFill className="cursor-pointer" />
                   <BsArrowLeftSquareFill className=" cursor-pointer rotate-180" />

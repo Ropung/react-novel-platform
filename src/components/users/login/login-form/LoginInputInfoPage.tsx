@@ -11,7 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const LoginInputInfoPage = () => {
-  const { SIGNUP, NOVEL, HOME } = Path;
+  const { SIGNUP, HOME } = Path;
   const navigate = useNavigate();
 
   const [canSeePW, setCanSeePW] = useState<boolean>(false);

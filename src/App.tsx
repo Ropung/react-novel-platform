@@ -1,8 +1,8 @@
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Footer from "./components/common/Footer";
 import GNB from "./components/common/GNB";
-import { db, auth } from "@utils/firebase";
+import { auth } from "@utils/firebase";
 import "firebase/firestore";
 import Path from "./utils/routes/Path";
 import UnauthenticatedRoutes from "@components/routes/UnauthenticatedRoutes";
@@ -16,12 +16,14 @@ function App() {
     NOVEL,
     SIGNUP,
     CARTOON,
-    WORKLIST,
+    NOVEL_WORKLIST,
     SERIES,
-    VIEWER,
     MY,
-    LOGOUT,
     MODIFYINFO,
+    MANAGEMENTLIST,
+    MANAGE_ADD,
+    MANAGE_HOME,
+    EVENT,
   } = Path;
 
   const [hasNav, setHasNav] = useState<boolean>(false);
@@ -50,28 +52,43 @@ function App() {
       LOGIN,
       SIGNUP,
       CARTOON,
-      WORKLIST,
+      NOVEL_WORKLIST,
       SERIES,
       MY,
       MODIFYINFO,
+      MANAGE_HOME,
+      MANAGEMENTLIST,
+      MANAGE_ADD,
+      EVENT,
     ].includes(pathname);
+
     // Footer 띄우는 PATH
-    const hasFooter = [HOME, NOVEL, CARTOON, WORKLIST, SERIES].includes(
-      pathname
-    );
+    const hasFooter = [
+      HOME,
+      NOVEL,
+      CARTOON,
+      NOVEL_WORKLIST,
+      SERIES,
+      EVENT,
+      MANAGE_HOME,
+      MANAGEMENTLIST,
+      MANAGE_ADD,
+      MY,
+    ].includes(pathname);
     setHasNav(hasNav);
     setHasFooter(hasFooter);
   }, [location.pathname, auth.currentUser]);
 
   return (
     <div
-      className={`relative min-h-[100vh] ${hasNav ? `pt-36` : ``} ${
-        hasFooter ? `pb-64` : ``
+      className={`w-full h-full ${hasNav ? `pt-36` : ``}
       }`}
     >
       <header>{hasNav && <GNB />}</header>
-      <div className="w-full h-full">{RoutesComponent}</div>
-      <footer>{hasFooter && <Footer />}</footer>
+      <main className="flex flex-col justify-center gap-10">
+        <div className="w-full flex flex-1">{RoutesComponent}</div>
+        <footer className="w-full h-fit">{hasFooter && <Footer />}</footer>
+      </main>
     </div>
   );
 }
