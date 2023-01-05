@@ -6,9 +6,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import NovelViewPage from "@components/novel/view/NovelViewPage";
 import MyPage from "@components/users/my/MyPage";
 import ModifyUserInfo from "@components/users/my/\bwidgets/ModifyUserInfo";
-import ManagementPage from "@components/novel/management/ManagementPage";
 import EventPage from "@components/home/event/EventPage";
-import ManagementHome from "@components/novel/management/widgets/ManagementHome";
+import ManagementHome from "@components/novel/management/ManagementHome";
 import ManagementWorkList from "@components/novel/management/widgets/ManagementWorkList";
 
 const ProtectedRoutes = () => {
@@ -35,9 +34,10 @@ const ProtectedRoutes = () => {
       <Route path={VIEWER} element={<NovelViewPage />} />
       <Route path={MY} element={<MyPage />} />
       <Route path={MODIFYINFO} element={<ModifyUserInfo />} />
+      {/* 작품관리 */}
+      <Route path={MANAGE_HOME} element={<ManagementHome />} />
       <Route path={MANAGEMENTLIST} element={<ManagementWorkList />} />
-      <Route path={MANAGE_HOME} element={<ManagementPage />} />
-      <Route path={MANAGE_ADD} element={<ManagementPage />} />
+      <Route path={MANAGE_ADD} element={<ManagementWorkList />} />
       <Route path={EVENT} element={<EventPage />} />
       <Route path="*" element={<Navigate replace to={HOME} />} />
     </Routes>

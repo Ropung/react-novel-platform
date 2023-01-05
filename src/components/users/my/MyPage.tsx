@@ -44,8 +44,8 @@ const MyPage = () => {
   }, [auth.currentUser]);
 
   return (
-    <main className="w-full flex items-center justify-center pt-12">
-      <div className="w-[80vw] flex flex-col gap-4">
+    <main className="w-full flex items-center justify-center">
+      <div className="w-[80vw] h-full min-h-screen flex flex-col gap-4">
         <h1 className="font-bold text-xl">계정 정보</h1>
         <label
           className="flex flex-row items-center justify-between border border-gray-400 shadow-md rounded-md px-4 py-2"

@@ -28,7 +28,7 @@ const NovelListPage = () => {
 
   return (
     <main className="w-full flex items-center justify-center">
-      <div className="w-[80vw] flex flex-col gap-4 pt-12">
+      <div className="w-[80vw] flex flex-col gap-4">
         {/* Top h1 line */}
         <section className="flex flex-col gap-2">
           <div className="flex justify-between items-end">

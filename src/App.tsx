@@ -7,6 +7,7 @@ import "firebase/firestore";
 import Path from "./utils/routes/Path";
 import UnauthenticatedRoutes from "@components/routes/UnauthenticatedRoutes";
 import ProtectedRoutes from "@components/routes/ProtectedRoutes";
+import path from "path";
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
     MANAGE_ADD,
     MANAGE_HOME,
     EVENT,
+    VIEWER,
   } = Path;
 
   const [hasNav, setHasNav] = useState<boolean>(false);
@@ -85,10 +87,16 @@ function App() {
       }`}
     >
       <header>{hasNav && <GNB />}</header>
-      <main className="flex flex-col justify-center gap-10">
-        <div className="w-full flex flex-1">{RoutesComponent}</div>
-        <footer className="w-full h-fit">{hasFooter && <Footer />}</footer>
+      <main
+        className={`flex flex-1 flex-col justify-center ${
+          location.pathname === VIEWER ? `` : `py-8`
+        }`}
+      >
+        <div className={`w-full h-full`}>{RoutesComponent}</div>
       </main>
+      <footer className="w-full h-fit flex items-end">
+        {hasFooter && <Footer />}
+      </footer>
     </div>
   );
 }

@@ -64,6 +64,12 @@ const GNB = () => {
       replace: false,
       position: "management",
     },
+    {
+      content: "작품등록",
+      linkTo: MANAGE_ADD,
+      replace: false,
+      position: "management",
+    },
 
     // My Menu List
     {
@@ -75,6 +81,12 @@ const GNB = () => {
     {
       content: "작품관리",
       linkTo: MANAGE_HOME,
+      replace: false,
+      position: "my",
+    },
+    {
+      content: "작품목록",
+      linkTo: MANAGEMENTLIST,
       replace: false,
       position: "my",
     },
@@ -128,7 +140,9 @@ const GNB = () => {
             {menuList
               .filter((item) => {
                 const PathNav =
-                  location.pathname === MANAGE_HOME
+                  location.pathname === MANAGE_HOME ||
+                  location.pathname === MANAGE_ADD ||
+                  location.pathname === MANAGEMENTLIST
                     ? item.position === "management"
                     : item.position === "main";
                 return PathNav;

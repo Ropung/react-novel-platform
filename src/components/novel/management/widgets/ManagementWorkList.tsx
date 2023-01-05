@@ -2,7 +2,7 @@ import MainButton from "@styles/ui-components/button";
 import Path from "@utils/routes/Path";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import IsNovel from "./state/isNovel";
+import IsNovel from "./state/IsNovel";
 import NoNovel from "./state/NoNovel";
 
 const ManagementWorkList = () => {
@@ -24,7 +24,7 @@ const ManagementWorkList = () => {
 
   return (
     <main className="w-full flex items-center justify-center">
-      <div className="w-[90vw] h-full flex flex-col gap-4">
+      <div className="w-[80vw] h-full flex flex-col gap-4">
         <header className="w-full flex flex-col gap-2">
           <div className="w-full flex flex-row justify-between items-end">
             <div className="flex justify-start items-end gap-6">
