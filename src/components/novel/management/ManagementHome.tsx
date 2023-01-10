@@ -1,6 +1,5 @@
 import MainButton from "@styles/ui-components/button";
 import Path from "@utils/routes/Path";
-import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ManagementHome = () => {
@@ -28,7 +27,7 @@ const ManagementHome = () => {
           <h1 className="flex-1 font-bold text-xl">내 작품</h1>
           <MainButton
             onClick={() => {
-              //
+              navigtate(MANAGE_ADD, { replace: false });
             }}
           >
             새작품 등록하기

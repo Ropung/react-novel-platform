@@ -9,6 +9,7 @@ import ModifyUserInfo from "@components/users/my/\bwidgets/ModifyUserInfo";
 import EventPage from "@components/home/event/EventPage";
 import ManagementHome from "@components/novel/management/ManagementHome";
 import ManagementWorkList from "@components/novel/management/widgets/ManagementWorkList";
+import ManagementAdd from "@components/novel/management/widgets/ManagementAdd";
 
 const ProtectedRoutes = () => {
   const {
@@ -37,7 +38,7 @@ const ProtectedRoutes = () => {
       {/* 작품관리 */}
       <Route path={MANAGE_HOME} element={<ManagementHome />} />
       <Route path={MANAGEMENTLIST} element={<ManagementWorkList />} />
-      <Route path={MANAGE_ADD} element={<ManagementWorkList />} />
+      <Route path={MANAGE_ADD} element={<ManagementAdd />} />
       <Route path={EVENT} element={<EventPage />} />
       <Route path="*" element={<Navigate replace to={HOME} />} />
     </Routes>

@@ -72,12 +72,12 @@ const GNB = () => {
     },
 
     // My Menu List
-    {
-      content: "이벤트",
-      linkTo: EVENT,
-      replace: false,
-      position: "my",
-    },
+    // {
+    //   content: "이벤트",
+    //   linkTo: EVENT,
+    //   replace: false,
+    //   position: "my",
+    // },
     {
       content: "작품관리",
       linkTo: MANAGE_HOME,

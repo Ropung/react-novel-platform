@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <footer className="w-full h-full border-t border-footer-contra py-4 bg-footer">
-      <div className="flex flex-col gap-4 px-16 py-8">
+    <footer className="w-full h-full border-t py-4">
+      <div className="w-full flex flex-col gap-4 px-16 py-8">
         <ul className="w-full flex flex-row gap-12 text-lg font-bold">
           <li className="cursor-pointer text-footer-contra">이용약관</li>
           <li className="cursor-pointer text-footer-contra">
