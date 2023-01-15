@@ -13,6 +13,7 @@ import React, {
 import { RegisterProgress } from "../widgets/ManagementAdd";
 import RegisterProgressBar from "./progress/RegisterProgressBar";
 import SampleImage from "@assets/img/sample.jpeg";
+import useAutosizeTextArea from "@utils/common/textresize";
 export interface RegisterDetailProps {
   progress: RegisterProgress;
   setProgress: React.Dispatch<React.SetStateAction<RegisterProgress>>;
@@ -25,6 +26,19 @@ const RegisterDetail: FunctionComponent<RegisterDetailProps> = (props) => {
   const [file, setFile] = useState<File | null>(null); // from files
   const [photoUrl, setPhotoUrl] = useState<string | ArrayBuffer | null>(null);
   const imageUploaderRef = useRef<HTMLInputElement | null>(null);
+
+  const introductionNovelRef = useRef<HTMLTextAreaElement | null>(null);
+  const [introductionNovelValue, setIntroductionNovelValue] =
+    useState<string>("");
+  useAutosizeTextArea(introductionNovelRef.current, introductionNovelValue);
+
+  const introductHandleChange = (
+    evt: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const val = evt.target?.value;
+
+    setIntroductionNovelValue(val);
+  };
 
   useEffect(() => {
     console.debug(photoUrl);
@@ -108,7 +122,7 @@ const RegisterDetail: FunctionComponent<RegisterDetailProps> = (props) => {
           <p className="w-[15%] font-bold">작품명</p>
           <input
             type="text"
-            className="flex flex-1 border border-gray-400 rounded-lg p-4 text-sm"
+            className="flex flex-1 border border-gray-400 rounded-lg p-4 text-sm outline-none resize-none"
             placeholder="40자 이하로 작성 가능합니다."
             maxLength={40}
           />
@@ -120,12 +134,14 @@ const RegisterDetail: FunctionComponent<RegisterDetailProps> = (props) => {
             <p className="w-full font-bold">작품소개</p>
             <span className="text-sm text-gray-400">{`(줄거리)`}</span>
           </div>
-
+          {/* 작품소개 */}
           <textarea
-            className="flex flex-1 border border-gray-400 rounded-lg p-4 text-sm"
-            cols={30}
-            rows={10}
+            ref={introductionNovelRef}
+            className="h-full flex flex-1 border border-gray-400 rounded-lg p-4 text-sm outline-none resize-none"
+            rows={1}
             placeholder="작품 줄거리를 입력하세요."
+            value={introductionNovelValue}
+            onChange={introductHandleChange}
           ></textarea>
         </div>
         <div

@@ -47,30 +47,44 @@ const RegisterContents: FunctionComponent<RegisterContentsProps> = (props) => {
         {/* progressbar */}
         <RegisterProgressBar progress={progress} setProgress={setProgress} />
       </section>
+      <div className="w-full flex flex-col gap-4">
+        {/* 회차 내용 section */}
+        <section className={`w-full flex flex-col items-center`}>
+          <div className="w-full flex flex-col items-start justify-center gap-1">
+            <p className="py-4 text-2xl">회차내용</p>
+            <fieldset className="w-full flex flex-col gap-4 border border-gray-400 rounded-md p-4">
+              <input
+                className="w-full h-8 p-2 outline-none "
+                type={"text"}
+                placeholder="소제목을 입력하세요. (최대 50글자)"
+                maxLength={50}
+              ></input>
+              <p className="border-b border-2" />
+              {/* 회차내용 */}
+              <textarea
+                className="w-full h-fit p-2 outline-none resize-none"
+                cols={1}
+                rows={10}
+                placeholder="회차 내용을 입력하세요."
+              ></textarea>
+            </fieldset>
+          </div>
+          <div className="w-full flex flex-col items-start justify-center gap-1">
+            <p className="py-4 text-2xl">작품후기</p>
 
-      <section className="w-full flex flex-col gap-4 text-lg">
-        <div
-          className={`w-full flex flex-row justify-between items-center border border-gray-400 rounded-md shadow-md p-4 checked-bg:bg-main`}
-        >
-          <p className="flex flex-1">작품성향</p>
-          <select className="w-[20%] border border-gray-400 rounded-lg p-2 text-sm">
-            <option value="defalut">선택안함</option>
-            <option value="man">남성향</option>
-            <option value="woman">여성향</option>
-          </select>
-        </div>
-        <div
-          className={`w-full flex flex-row justify-between items-center border border-gray-400 rounded-md shadow-md p-4 ${``}`}
-        >
-          <p className="flex flex-1">카테고리</p>
-          <select className="w-[20%] border border-gray-400 rounded-lg p-2 text-sm">
-            <option value="defalut">판타지</option>
-            <option value="man">무협</option>
-            <option value="woman">라이트노벨</option>
-            <option value="woman">게임</option>
-          </select>
-        </div>
-        <div className="w-full flex justify-end">
+            <fieldset className="w-full flex flex-col gap-4 border border-gray-400 rounded-md p-4">
+              {/* 작품후기 */}
+              <textarea
+                className="w-full h-fit p-2 outline-none resize-none "
+                cols={1}
+                rows={1}
+                placeholder="회차 내용을 입력하세요."
+              ></textarea>
+            </fieldset>
+          </div>
+        </section>
+        {/* 버튼  section */}
+        <section className="w-full flex justify-end">
           <MainButton
             className="w-[20%] flex items-center justify-center"
             onClick={() => {
@@ -87,8 +101,8 @@ const RegisterContents: FunctionComponent<RegisterContentsProps> = (props) => {
           >
             {`완료 >`}
           </MainButton>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 };
