@@ -22,11 +22,13 @@ export interface RegisterDetailProps {
 const RegisterDetail: FunctionComponent<RegisterDetailProps> = (props) => {
   const { progress, setProgress } = props;
 
+  // img
   const [files, setFiles] = useState<FileList | null>(null);
   const [file, setFile] = useState<File | null>(null); // from files
   const [photoUrl, setPhotoUrl] = useState<string | ArrayBuffer | null>(null);
   const imageUploaderRef = useRef<HTMLInputElement | null>(null);
 
+  // text resize
   const introductionNovelRef = useRef<HTMLTextAreaElement | null>(null);
   const [introductionNovelValue, setIntroductionNovelValue] =
     useState<string>("");
@@ -134,7 +136,7 @@ const RegisterDetail: FunctionComponent<RegisterDetailProps> = (props) => {
             <p className="w-full font-bold">작품소개</p>
             <span className="text-sm text-gray-400">{`(줄거리)`}</span>
           </div>
-          {/* 작품소개 */}
+          {/* 작품소개 textarea */}
           <textarea
             ref={introductionNovelRef}
             className="h-full flex flex-1 border border-gray-400 rounded-lg p-4 text-sm outline-none resize-none"
