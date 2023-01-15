@@ -2,8 +2,8 @@ import MainButton from "@styles/ui-components/button";
 import Path from "@utils/routes/Path";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import IsNovel from "./state/IsNovel";
-import NoNovel from "./state/NoNovel";
+import IsNovel from "../state/IsNovel";
+import NoNovel from "../state/NoNovel";
 
 const ManagementWorkList = () => {
   const navigate = useNavigate();

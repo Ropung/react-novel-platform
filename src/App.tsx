@@ -78,7 +78,7 @@ function App() {
     ].includes(pathname);
     setHasNav(hasNav);
     setHasFooter(hasFooter);
-  }, [location.pathname, auth.currentUser]);
+  }, [auth.currentUser, RoutesComponent, location.pathname]);
 
   return (
     <div

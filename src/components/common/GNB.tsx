@@ -99,6 +99,7 @@ const GNB = () => {
   ];
 
   const [isMyModal, setMyModal] = useState<boolean>(false);
+
   const [userData, setUserData] = useState<UserInfo>({
     authorName: "",
     birth: "",
@@ -108,22 +109,25 @@ const GNB = () => {
   });
 
   useEffect(() => {
+    if (!auth.currentUser) {
+      return;
+    }
     db.collection("users")
       .doc(auth.currentUser?.uid)
       .get()
-      .then((doc) => {
-        const docDataStringify = JSON.stringify(doc.data());
-        const docData = JSON.parse(docDataStringify);
+      .then((result) => {
+        const docDataStringify = JSON.stringify(result.data());
+        const jsonData = JSON.parse(docDataStringify);
 
-        console.log("docData:", docData);
-        setUserData(docData);
+        console.log("jsonData(GNB_123):", jsonData);
+        setUserData(jsonData);
       });
   }, [auth.currentUser]);
 
   return (
     <nav className="w-full fixed top-0 right-0 left-0 z-[100] flex flex-row h-36 bg-light text-dark select-none px-8 border-b shadow-md">
       <div className="w-full flex flex-row justify-between items-center gap-6 px-8 py-4">
-        <div
+        <section
           className="flex justify-start items-end gap-12"
           onClick={() => {
             setMyModal(false);
@@ -152,12 +156,14 @@ const GNB = () => {
                   key={menu.content}
                   onClick={() => navigate(menu.linkTo, { replace: true })}
                 >
-                  <li className="cursor-pointer">{menu.content}</li>
+                  <p className="cursor-pointer">{menu.content}</p>
                 </li>
               ))}
           </ul>
-        </div>
-        <div className="flex flex-row gap-2 justify-end items-center font-bold relative">
+        </section>
+
+        <section className="flex flex-row gap-2 justify-end items-center font-bold relative">
+          {/* 로그아웃상태 로그인화면으로 */}
           {!auth.currentUser && (
             <AiOutlineUser
               className="text-5xl"
@@ -166,6 +172,7 @@ const GNB = () => {
               }}
             />
           )}
+          {/* 로그인 상태 */}
           {auth.currentUser && (
             <div
               className="flex flex-row gap-2 items-center"
@@ -181,6 +188,7 @@ const GNB = () => {
               />
             </div>
           )}
+
           {auth.currentUser && isMyModal && (
             <section
               className={`absolute top-[120%] right-0 w-[30vw] bg-white border border-gray-200 rounded-md shadow-md p-4`}
@@ -235,8 +243,7 @@ const GNB = () => {
               </div>
             </section>
           )}
-          <div></div>
-        </div>
+        </section>
       </div>
     </nav>
   );
