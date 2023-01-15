@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "blueimp-load-image": "^5.16.0",
     "firebase": "^8.6.5",
     "framer-motion": "^8.0.2",
     "react": "^18.0.0",
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "@tailwindcss/line-clamp": "^0.4.2",
+    "@types/blueimp-load-image": "^5.16.0",
     "@types/node": "^18.11.17",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
