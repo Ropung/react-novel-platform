@@ -124,7 +124,7 @@ const RegisterDetail: FunctionComponent<RegisterDetailProps> = (props) => {
           <p className="w-[15%] font-bold">작품명</p>
           <input
             type="text"
-            className="flex flex-1 border border-gray-400 rounded-lg p-4 text-sm outline-none resize-none"
+            className="flex flex-1 border border-gray-400 rounded-lg p-4 text-lg outline-none resize-none"
             placeholder="40자 이하로 작성 가능합니다."
             maxLength={40}
           />
@@ -139,7 +139,7 @@ const RegisterDetail: FunctionComponent<RegisterDetailProps> = (props) => {
           {/* 작품소개 textarea */}
           <textarea
             ref={introductionNovelRef}
-            className="h-full flex flex-1 border border-gray-400 rounded-lg p-4 text-sm outline-none resize-none"
+            className="w-full min-h-[15vh] flex flex-1 border border-gray-400 rounded-lg p-4 text-sm outline-none resize-none placeholder:text-base"
             rows={1}
             placeholder="작품 줄거리를 입력하세요."
             value={introductionNovelValue}

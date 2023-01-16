@@ -1,7 +1,7 @@
 import MainButton from "@styles/ui-components/button";
 import useAutosizeTextArea from "@utils/common/textresize";
 import Path from "@utils/routes/Path";
-import React, { FunctionComponent, useRef, useState } from "react";
+import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterProgress } from "../widgets/ManagementAdd";
 import RegisterProgressBar from "./progress/RegisterProgressBar";
@@ -87,9 +87,9 @@ const RegisterContents: FunctionComponent<RegisterContentsProps> = (props) => {
               {/* 회차내용 */}
               <textarea
                 ref={contentsSessionRef}
-                className="w-full h-fit p-2 outline-none resize-none placeholder:text-base"
+                className="w-full min-h-[20vh] p-2 outline-none resize-none placeholder:text-base"
                 rows={1}
-                placeholder="작가님의 아이디어를 보여주세요.&#13;&#13;시작이 반이다! 작가님의 상상력과 기발하고 &#13;재치있는 아이디어를 로풍이 응원합니다.&#13;&#13;글을 적으시면 스크롤없이 자동으로 줄바꿈이 적용되어 있습니다!"
+                placeholder={`작가님의 아이디어를 보여주세요.\n시작이 반이다!\n\n작가님의 상상력과 기발하고\n재치있는 아이디어를 로풍이 응원합니다.\n\n글을 적으시면 스크롤없이 자동으로 줄바꿈이 적용되어 있습니다!`}
                 value={contentsSessionValue}
                 onChange={contentsSessionHandleChange}
               ></textarea>
@@ -101,7 +101,7 @@ const RegisterContents: FunctionComponent<RegisterContentsProps> = (props) => {
               {/* 작품후기 textarea*/}
               <textarea
                 ref={reviewWorkRef}
-                className="w-full h-fit p-2 outline-none resize-none placeholder:text-base"
+                className="w-full h-fit p-2 outline-none resize-none placeholder:text-lg"
                 rows={1}
                 placeholder="작품후기를 입력하세요."
                 value={reviewWorkValue}
